@@ -2,6 +2,7 @@
 #include <cppcms/applications_pool.h>  
 #include <cppcms/service.h>  
 #include <cppcms/http_response.h>
+#include <cppcms/http_request.h>
 #include <cppcms/url_dispatcher.h>
 #include <cppcms/url_mapper.h>
 
@@ -56,6 +57,7 @@ void hello::welcome() {
 
 void hello::index()
 {
+    std::cout << "remote_addr:" << request().remote_addr() << std::endl;
     content::message c;
     c.text=">>>Hello<<<";
     render("message",c);
