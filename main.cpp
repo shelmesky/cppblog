@@ -22,7 +22,7 @@ public:
         dispatcher().assign("/smile", &hello::smile, this);
         mapper().assign("smile", "/smile");
 
-        dispatcher().assign("", &hello::index, this);
+        dispatcher().assign("/", &hello::index, this);
         mapper().assign("");
 
         mapper().root("/");
