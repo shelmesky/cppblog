@@ -69,6 +69,18 @@ void cppblog::smile() {
 
 void cppblog::index()
 {
+    soci::session sql(db_pool);
+    soci::rowset<soci::row> rs = (sql.prepare << "select id, title, keyword, dummy_body, real_body from articles");
+
+    for(soci::rowset<soci::row>::const_iterator it=rs.begin(); it != rs.end(); ++it) {
+        soci::row const& row = *it;
+        std::cout << "ID: " << row.get<int>(0) << '\n'
+        << "title: " << row.get<std::string>(1) << '\n'
+        << "keyword: " << row.get<std::string>(2) << '\n'
+        << "dummy_body: " << row.get<std::string>(3) << '\n'
+        << "real_body: " << row.get<std::string>(4) << '\n';
+    }
+
     std::cout << "remote_addr:" << request().remote_addr() << std::endl;
     content::message c;
     c.text=">>>Hello<<<";
