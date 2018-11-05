@@ -14,6 +14,7 @@
 #include <stdlib.h>
 
 #include "content.h"
+#include "datatype.h"
 
 const size_t poolSize = 10;
 soci::connection_pool db_pool(poolSize);
@@ -48,7 +49,6 @@ public:
 
         mapper().root("/");
     }
-    //virtual void main(std::string url);
     void index();
     void show_article(std::string number);
     void smile();
@@ -69,20 +69,33 @@ void cppblog::smile() {
 
 void cppblog::index()
 {
+    std::list<article>article_list;
     soci::session sql(db_pool);
-    soci::rowset<soci::row> rs = (sql.prepare << "select id, title, keyword, dummy_body, real_body from articles");
 
-    for(soci::rowset<soci::row>::const_iterator it=rs.begin(); it != rs.end(); ++it) {
-        soci::row const& row = *it;
-        std::cout << "ID: " << row.get<int>(0) << '\n'
-        << "title: " << row.get<std::string>(1) << '\n'
-        << "keyword: " << row.get<std::string>(2) << '\n'
-        << "dummy_body: " << row.get<std::string>(3) << '\n'
-        << "real_body: " << row.get<std::string>(4) << '\n';
+    int articles_cout;
+    sql << "select count(*) from articles", soci::into(articles_cout);
+
+    std::cout << "we have " << articles_cout << " articles\n\n";
+
+    if (articles_cout > 0) {
+        soci::rowset<soci::row> rs = (sql.prepare << "select id, title, keyword, dummy_body, real_body from articles");
+
+        for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
+            article a;
+            soci::row const &row = *it;
+            a.id = row.get<int>(0);
+            a.title = row.get<std::string>(1);
+            a.keyword = row.get<std::string>(2);
+            a.dummy_body = row.get<std::string>(3);
+            a.real_body = row.get<std::string>(4);
+            article_list.push_back(a);
+        }
+    } else {
+        std::cout << "articles is empty" << std::endl;
     }
 
-    std::cout << "remote_addr:" << request().remote_addr() << std::endl;
     content::message c;
+    c.article_list = article_list;
     c.text=">>>Hello<<<";
     render("message",c);
 }

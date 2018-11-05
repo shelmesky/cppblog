@@ -5,6 +5,18 @@
 <html>
   <body>
     <h1><%= text %> World!</h1>
+
+    <div>
+    <% foreach article in article_list %>
+        <ul>
+        <% item %>
+            <li> <%= article.id %>  <%= article.title %> <%= article.keyword %> <%= article.dummy_body %> <%= article.real_body %></li>
+        <% end %>
+        </ul>
+    <% empty %>
+        没有文章
+    <% end %>
+    </div>
   </body>
 </html>
 <% end template %>
