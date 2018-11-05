@@ -10,8 +10,12 @@
 #include <soci/connection-pool.h>
 #include <soci/mysql/soci-mysql.h>
 
+#include <maddy/parser.h>
+
 #include <iostream>
 #include <stdlib.h>
+#include <memory>
+#include <string>
 
 #include "content.h"
 #include "datatype.h"
@@ -69,6 +73,8 @@ void cppblog::smile() {
 
 void cppblog::index()
 {
+    std::shared_ptr<maddy::Parser> parser = std::make_shared<maddy::Parser>();
+
     std::list<article>article_list;
     soci::session sql(db_pool);
 
@@ -83,10 +89,14 @@ void cppblog::index()
         for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
             article a;
             soci::row const &row = *it;
+
             a.id = row.get<int>(0);
             a.title = row.get<std::string>(1);
             a.keyword = row.get<std::string>(2);
-            a.dummy_body = row.get<std::string>(3);
+
+            std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
+            a.dummy_body = parser->Parse(dummy_body);
+
             a.real_body = row.get<std::string>(4);
             article_list.push_back(a);
         }
