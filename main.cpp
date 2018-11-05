@@ -6,56 +6,68 @@
 #include <cppcms/url_dispatcher.h>
 #include <cppcms/url_mapper.h>
 
+#include <soci/soci.h>
+#include <soci/connection-pool.h>
+#include <soci/mysql/soci-mysql.h>
+
 #include <iostream>
 #include <stdlib.h>
 
 #include "content.h"
 
-class hello : public cppcms::application {
+const size_t poolSize = 10;
+soci::connection_pool db_pool(poolSize);
+
+int initSOCIConnectionPool() {
+    try {
+        for (size_t i = 0; i != poolSize; i++) {
+            soci::session &sql = db_pool.at(i);
+            sql.open("mysql", "db=cppblog user=root password='4974481lmh'");
+        }
+    } catch(std::exception const &e) {
+        std::cout << "init soci connection poll failed: " << e.what() << std::endl;
+        return -1;
+    }
+
+    return 0;
+}
+
+class cppblog : public cppcms::application {
 public:
-    hello(cppcms::service &srv) :
+    cppblog(cppcms::service &srv) :
         cppcms::application(srv)
     {
-        dispatcher().assign("/number/(\\d+)", &hello::number, this, 1);
+        dispatcher().assign("/article/(\\d+)", &cppblog::show_article, this, 1);
         mapper().assign("number", "/number/{1}");
 
-        dispatcher().assign("/smile", &hello::smile, this);
+        dispatcher().assign("/smile", &cppblog::smile, this);
         mapper().assign("smile", "/smile");
 
-        dispatcher().assign("/", &hello::index, this);
+        dispatcher().assign("/", &cppblog::index, this);
         mapper().assign("");
 
         mapper().root("/");
     }
     //virtual void main(std::string url);
     void index();
-    void number(std::string number);
+    void show_article(std::string number);
     void smile();
-    void welcome();
 };
 
 
-void hello::number(std::string number) {
+void cppblog::show_article(std::string number) {
     int no = atoi(number.c_str());
     response().out() << "This number is " << no << "<br/>\n";
     response().out() << "<a href='" << url("/") << "'>Go back</a>";
 }
 
-void hello::smile() {
+void cppblog::smile() {
     response().out() << ":-) <br/>\n";
     response().out() << "<a href='" << url("/") << "'>Go back</a>";
 }
 
-void hello::welcome() {
-    response().out() <<
-    "<h1> Welcome To Page with links </h1>\n"
-    "<a href='" << url("/number",1)  << "'>1</a><br>\n"
-    "<a href='" << url("/number",15) << "'>15</a><br>\n"
-    "<a href='" << url("/smile") << "' >:-)</a><br>\n";
-}
 
-
-void hello::index()
+void cppblog::index()
 {
     std::cout << "remote_addr:" << request().remote_addr() << std::endl;
     content::message c;
@@ -66,9 +78,13 @@ void hello::index()
 
 int main(int argc,char ** argv)
 {
+    if (initSOCIConnectionPool() != 0) {
+        return -1;
+    }
+
     try {
         cppcms::service srv(argc,argv);
-        srv.applications_pool().mount(cppcms::applications_factory<hello>());
+        srv.applications_pool().mount(cppcms::applications_factory<cppblog>());
         srv.run();
     }
     catch(std::exception const &e) {
