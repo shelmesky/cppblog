@@ -95,7 +95,7 @@ void cppblog::index()
             a.keyword = row.get<std::string>(2);
 
             std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
-            a.dummy_body = parser->Parse(dummy_body);
+            a.dummy_body = parser->Parse(dummy_body);   // TODO: this will be heavy cpu used!!!
 
             a.real_body = row.get<std::string>(4);
             article_list.push_back(a);
