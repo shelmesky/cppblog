@@ -9,12 +9,17 @@
 #include <unordered_map>
 
 struct article {
+    article(){
+        id = -1;
+    };
+
     int id;
     std::string title;
     std::string keyword;
     std::string dummy_body;
     std::string real_body;
 };
+
 
 template <typename keyType, typename valueType>
 class Cache {
@@ -28,10 +33,12 @@ private:
 
 template <typename keyType, typename valueType>
 valueType Cache<keyType, valueType>::Read(keyType key) {
+    valueType value;
     typename std::unordered_map<keyType, valueType>::const_iterator result = _mapCache.find(key);
     if(result != _mapCache.end()) {
-        return result->second;
+        value = result->second;
     }
+    return value;
 }
 
 template <typename keyType, typename valueType>
