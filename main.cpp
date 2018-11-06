@@ -20,7 +20,7 @@
 #include "content.h"
 #include "datatype.h"
 
-const size_t poolSize = 10;
+const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
 
 int initSOCIConnectionPool() {
