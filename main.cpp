@@ -1,28 +1,9 @@
-#include <cppcms/application.h>  
-#include <cppcms/applications_pool.h>  
-#include <cppcms/service.h>  
-#include <cppcms/http_response.h>
-#include <cppcms/http_request.h>
-#include <cppcms/url_dispatcher.h>
-#include <cppcms/url_mapper.h>
-
-#include <soci/soci.h>
-#include <soci/connection-pool.h>
-#include <soci/mysql/soci-mysql.h>
-
-#include <maddy/parser.h>
-
-#include <iostream>
-#include <stdlib.h>
-#include <memory>
-#include <string>
-
-#include "content.h"
-#include "datatype.h"
+#include "config.h"
 
 const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
+
 
 int initSOCIConnectionPool() {
     try {
@@ -37,6 +18,7 @@ int initSOCIConnectionPool() {
 
     return 0;
 }
+
 
 class cppblog : public cppcms::application {
 public:
@@ -118,9 +100,7 @@ void cppblog::index()
 
 int main(int argc,char ** argv)
 {
-    if (initSOCIConnectionPool() != 0) {
-        return -1;
-    }
+    initSOCIConnectionPool();
 
     try {
         cppcms::service srv(argc,argv);
