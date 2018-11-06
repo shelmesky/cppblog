@@ -79,10 +79,10 @@ void cppblog::index()
     std::list<article>article_list;
     soci::session sql(db_pool);
 
-    int articles_cout;
-    sql << "select count(*) from articles", soci::into(articles_cout);
+    int articles_count;
+    sql << "select count(*) from articles", soci::into(articles_count);
 
-    if (articles_cout > 0) {
+    if (articles_count > 0) {
         soci::rowset<soci::row> rs = (sql.prepare << "select id, title, keyword, dummy_body, real_body from articles");
 
         for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
