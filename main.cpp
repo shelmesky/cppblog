@@ -96,7 +96,7 @@ void cppblog::index()
             std::string dummyBody = dummyBodyCache.Read(a.id);
             if(dummyBody.empty()) {
                 std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
-                a.dummy_body = parser->Parse(dummy_body);   // TODO: this will be heavy cpu used!!!
+                a.dummy_body = parser->Parse(dummy_body);
                 dummyBodyCache.Write(a.id, a.dummy_body);
             } else {
                 a.dummy_body = dummyBody;
