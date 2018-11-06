@@ -22,6 +22,7 @@
 
 const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
+Cache<int, std::string> dummyBodyCache;
 
 int initSOCIConnectionPool() {
     try {
@@ -81,8 +82,6 @@ void cppblog::index()
     int articles_cout;
     sql << "select count(*) from articles", soci::into(articles_cout);
 
-    std::cout << "we have " << articles_cout << " articles\n\n";
-
     if (articles_cout > 0) {
         soci::rowset<soci::row> rs = (sql.prepare << "select id, title, keyword, dummy_body, real_body from articles");
 
@@ -94,8 +93,14 @@ void cppblog::index()
             a.title = row.get<std::string>(1);
             a.keyword = row.get<std::string>(2);
 
-            std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
-            a.dummy_body = parser->Parse(dummy_body);   // TODO: this will be heavy cpu used!!!
+            std::string dummyBody = dummyBodyCache.Read(a.id);
+            if(dummyBody.empty()) {
+                std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
+                a.dummy_body = parser->Parse(dummy_body);   // TODO: this will be heavy cpu used!!!
+                dummyBodyCache.Write(a.id, a.dummy_body);
+            } else {
+                a.dummy_body = dummyBody;
+            }
 
             a.real_body = row.get<std::string>(4);
             article_list.push_back(a);
