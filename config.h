@@ -33,5 +33,6 @@ namespace po = boost::program_options;
 #include "content.h"
 #include "datatype.h"
 #include "file_server.h"
+#include "markdown.h"
 
 #endif //CPPBLOG_CONFIG_H

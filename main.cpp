@@ -6,7 +6,6 @@ const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
 
-
 int initSOCIConnectionPool(std::string const& db_type, std::string const& db_conn) {
     try {
         for (size_t i = 0; i != poolSize; i++) {
@@ -85,8 +84,9 @@ std::list<article> cppblog::get_articles(int page) {
 
         std::string dummyBody = dummyBodyCache.Read(a.id);
         if(dummyBody.empty()) {
-            std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
-            a.dummy_body = parser->Parse(dummy_body);
+            char *input_markdown = (char *)row.get<std::string>(3).c_str();
+            char *output_html = Markdown(input_markdown).render();
+            a.dummy_body = std::string(output_html);
             dummyBodyCache.Write(a.id, a.dummy_body);
         } else {
             a.dummy_body = dummyBody;
