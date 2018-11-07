@@ -1,5 +1,7 @@
 #include "config.h"
 
+
+const int number_per_page = 5;
 const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
@@ -26,7 +28,7 @@ public:
         cppcms::application(srv)
     {
         dispatcher().assign("/article/(\\d+)", &cppblog::show_article, this, 1);
-        mapper().assign("number", "/article/{1}");
+        mapper().assign("article", "/article/{1}");
 
         dispatcher().assign("/smile", &cppblog::smile, this);
         mapper().assign("smile", "/smile");
@@ -34,11 +36,16 @@ public:
         dispatcher().assign("/", &cppblog::index, this);
         mapper().assign("");
 
+        dispatcher().assign("/page/(\\d+)", &cppblog::index_page, this, 1);
+        mapper().assign("page", "/page/{1}");
+
         mapper().root("/");
     }
     void index();
     void show_article(std::string number);
+    void index_page(std::string number);
     void smile();
+    std::list<article> get_articles(int page);
 };
 
 
@@ -54,8 +61,7 @@ void cppblog::smile() {
 }
 
 
-void cppblog::index()
-{
+std::list<article> cppblog::get_articles(int page) {
     std::shared_ptr<maddy::Parser> parser = std::make_shared<maddy::Parser>();
 
     std::list<article>article_list;
@@ -64,8 +70,14 @@ void cppblog::index()
     int articles_count;
     sql << "select count(*) from articles", soci::into(articles_count);
 
+    std::string sql_str = "select id, title, keyword, dummy_body, "
+                          "real_body from articles limit :limit, :offset";
+
     if (articles_count > 0) {
-        soci::rowset<soci::row> rs = (sql.prepare << "select id, title, keyword, dummy_body, real_body from articles");
+        int limit = (page-1)*number_per_page;
+        int offset = number_per_page;
+        soci::rowset<soci::row> rs =
+                (sql.prepare << sql_str, soci::use(limit), soci::use(offset));
 
         for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
             article a;
@@ -90,6 +102,25 @@ void cppblog::index()
     } else {
         std::cout << "articles is empty" << std::endl;
     }
+
+    return article_list;
+}
+
+
+void cppblog::index_page(std::string number) {
+    int page = atoi(number.c_str());
+    std::list<article> article_list = get_articles(page);
+
+    content::message c;
+    c.article_list = article_list;
+    c.text=">>>Hello<<<";
+    render("message",c);
+}
+
+
+void cppblog::index()
+{
+    std::list<article> article_list = get_articles(1);
 
     content::message c;
     c.article_list = article_list;
