@@ -3,14 +3,31 @@
 <% view message uses content::message %>
 <% template render() %>
 <html>
+  <head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  </head>
+
   <body>
     <div>
+
     <% foreach article in article_list %>
-        <ul>
+
         <% item %>
-            <li> <%= article.id %>  <%= article.title %> <%= article.keyword %> <%= article.dummy_body %> <%= article.real_body %></li>
+        <table border="1">
+        <tr>
+            <td> <%= article.id %>  <%= article.title %> <%= article.keyword %> </td>
+        </tr>
+        <tr>
+            <td><%= article.dummy_body | raw %> </td>
+        </tr>
+        <tr>
+            <td><%= article.real_body %> </td>
+        </tr>
+        </table>
+         </br>
         <% end %>
-        </ul>
+
+
     <% empty %>
         没有文章
     <% end %>

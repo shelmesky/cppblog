@@ -21,114 +21,131 @@ namespace my_skin {
 		#line 4 "index.tmpl"
 			cppcms::translation_domain_scope _trs(out(),_domain_id);
 
-			#line 8 "index.tmpl"
+			#line 13 "index.tmpl"
 			out()<<"\n"
 				"<html>\n"
+				"  <head>\n"
+				"  <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />\n"
+				"  </head>\n"
+				"\n"
 				"  <body>\n"
 				"    <div>\n"
+				"\n"
 				"    ";
-			#line 8 "index.tmpl"
+			#line 13 "index.tmpl"
 			if((content.article_list).begin()!=(content.article_list).end()) {
-				#line 10 "index.tmpl"
+				#line 15 "index.tmpl"
 				out()<<"\n"
-					"        <ul>\n"
+					"\n"
 					"        ";
-				#line 10 "index.tmpl"
+				#line 15 "index.tmpl"
 				for(CPPCMS_TYPEOF((content.article_list).begin()) article_ptr=(content.article_list).begin(),article_ptr_end=(content.article_list).end();article_ptr!=article_ptr_end;++article_ptr) {
-				#line 10 "index.tmpl"
+				#line 15 "index.tmpl"
 				CPPCMS_TYPEOF(*article_ptr) &article=*article_ptr;
-					#line 11 "index.tmpl"
+					#line 18 "index.tmpl"
 					out()<<"\n"
-						"            <li> ";
-					#line 11 "index.tmpl"
+						"        <table border=\"1\">\n"
+						"        <tr>\n"
+						"            <td> ";
+					#line 18 "index.tmpl"
 					out()<<cppcms::filters::escape(article.id);
-					#line 11 "index.tmpl"
+					#line 18 "index.tmpl"
 					out()<<"  ";
-					#line 11 "index.tmpl"
+					#line 18 "index.tmpl"
 					out()<<cppcms::filters::escape(article.title);
-					#line 11 "index.tmpl"
+					#line 18 "index.tmpl"
 					out()<<" ";
-					#line 11 "index.tmpl"
+					#line 18 "index.tmpl"
 					out()<<cppcms::filters::escape(article.keyword);
-					#line 11 "index.tmpl"
-					out()<<" ";
-					#line 11 "index.tmpl"
-					out()<<cppcms::filters::escape(article.dummy_body);
-					#line 11 "index.tmpl"
-					out()<<" ";
-					#line 11 "index.tmpl"
+					#line 21 "index.tmpl"
+					out()<<" </td>\n"
+						"        </tr>\n"
+						"        <tr>\n"
+						"            <td>";
+					#line 21 "index.tmpl"
+					out()<<cppcms::filters::raw(article.dummy_body);
+					#line 24 "index.tmpl"
+					out()<<" </td>\n"
+						"        </tr>\n"
+						"        <tr>\n"
+						"            <td>";
+					#line 24 "index.tmpl"
 					out()<<cppcms::filters::escape(article.real_body);
-					#line 12 "index.tmpl"
-					out()<<"</li>\n"
+					#line 28 "index.tmpl"
+					out()<<" </td>\n"
+						"        </tr>\n"
+						"        </table>\n"
+						"         </br>\n"
 						"        ";
-				#line 12 "index.tmpl"
+				#line 28 "index.tmpl"
 				} // end of item
-				#line 14 "index.tmpl"
+				#line 31 "index.tmpl"
 				out()<<"\n"
-					"        </ul>\n"
+					"\n"
+					"\n"
 					"    ";
-			#line 14 "index.tmpl"
+			#line 31 "index.tmpl"
 			 } else {
-				#line 16 "index.tmpl"
+				#line 33 "index.tmpl"
 				out()<<"\n"
 					"        没有文章\n"
 					"    ";
-			#line 16 "index.tmpl"
+			#line 33 "index.tmpl"
 			} // end of empty
-			#line 21 "index.tmpl"
+			#line 38 "index.tmpl"
 			out()<<"\n"
 				"    </div>\n"
 				"\n"
 				"    <div>\n"
 				"    <p>\n"
 				"    <a href=\"/page/";
-			#line 21 "index.tmpl"
+			#line 38 "index.tmpl"
 			out()<<cppcms::filters::escape(content.prev_page_number);
-			#line 22 "index.tmpl"
+			#line 39 "index.tmpl"
 			out()<<"\">上一页</a> &nbsp; &nbsp; &nbsp;\n"
 				"    <a href=\"/page/";
-			#line 22 "index.tmpl"
+			#line 39 "index.tmpl"
 			out()<<cppcms::filters::escape(content.next_page_number);
-			#line 27 "index.tmpl"
+			#line 44 "index.tmpl"
 			out()<<"\">下一页</a>\n"
 				"    </p>\n"
 				"     </div>\n"
 				"  </body>\n"
 				"</html>\n"
 				"";
-		#line 27 "index.tmpl"
+		#line 44 "index.tmpl"
 		} // end of template render
-	#line 28 "index.tmpl"
+	#line 45 "index.tmpl"
 	private:
-	#line 28 "index.tmpl"
+	#line 45 "index.tmpl"
 		int _domain_id;
-	#line 28 "index.tmpl"
+	#line 45 "index.tmpl"
 	}; // end of class message
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
 } // end of namespace my_skin
 #line 2 "index.tmpl"
 namespace my_skin {
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
 } // end of namespace my_skin
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
 namespace {
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
  cppcms::views::generator my_generator; 
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
  struct loader { 
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
   loader() { 
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
    my_generator.name("my_skin");
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
    my_generator.add_view<my_skin::message,content::message>("message",true);
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
     cppcms::views::pool::instance().add(my_generator);
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
  }
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
 } a_loader;
-#line 29 "index.tmpl"
+#line 46 "index.tmpl"
 } // anon 
