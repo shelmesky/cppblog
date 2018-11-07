@@ -5,7 +5,7 @@ soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
 
 
-int initSOCIConnectionPool(std::string db_type, std::string db_conn) {
+int initSOCIConnectionPool(std::string const& db_type, std::string const& db_conn) {
     try {
         for (size_t i = 0; i != poolSize; i++) {
             soci::session &sql = db_pool.at(i);
