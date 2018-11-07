@@ -5,11 +5,11 @@ soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
 
 
-int initSOCIConnectionPool() {
+int initSOCIConnectionPool(std::string db_type, std::string db_conn) {
     try {
         for (size_t i = 0; i != poolSize; i++) {
             soci::session &sql = db_pool.at(i);
-            sql.open("mysql", "db=cppblog user=root password='4974481lmh'");
+            sql.open(db_type, db_conn);
         }
     } catch(std::exception const &e) {
         std::cout << "init soci connection poll failed: " << e.what() << std::endl;
@@ -100,10 +100,13 @@ void cppblog::index()
 
 int main(int argc,char ** argv)
 {
-    initSOCIConnectionPool();
-
     try {
         cppcms::service srv(argc,argv);
+
+        std::string db_type = srv.settings().get("application.db_type","");
+        std::string db_conn = srv.settings().get("application.db_conn", "");
+        initSOCIConnectionPool(db_type, db_conn);
+
         auto flags = cppcms::app::synchronous;
         srv.applications_pool().mount(cppcms::create_pool<cppblog>(), cppcms::mount_point(""), flags);
         srv.applications_pool().mount(cppcms::create_pool<file_server>(), cppcms::mount_point("/file"), flags);

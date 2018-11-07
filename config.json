@@ -1,4 +1,7 @@
-{  
+{  "application": {
+        "db_type": "mysql",
+        "db_conn": "db=cppblog user=root password='root'"
+    },
     "service" : {  
         "api" : "http",  
         "port" : 8080,
