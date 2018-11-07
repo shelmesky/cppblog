@@ -29,6 +29,7 @@ class Cache {
 public:
     valueType Read(keyType key);
     void Write(keyType key, valueType value);
+    void Delete(keyType key);
 
 private:
     std::unordered_map<keyType, valueType> _mapCache;
@@ -55,6 +56,12 @@ void Cache<keyType, valueType>::Write(keyType key, valueType value) {
         _mapCache.erase(key);
     }
     _mapCache.insert(std::make_pair(key, value));
+}
+
+template <typename keyType, typename valueType>
+void Cache<keyType, valueType>::Delete(keyType key) {
+    write_lock rlock(read_write_mutex);
+    _mapCache.erase(key);
 }
 
 #endif //CPPBLOG_DATATYPE_H
