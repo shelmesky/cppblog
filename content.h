@@ -14,6 +14,8 @@ namespace content  {
     struct message : public cppcms::base_content {
         std::string text;
         std::list<article>article_list;
+        int prev_page_number;
+        int next_page_number;
     };
 }
 

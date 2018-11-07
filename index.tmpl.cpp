@@ -81,45 +81,60 @@ namespace my_skin {
 					"    ";
 			#line 18 "index.tmpl"
 			} // end of empty
-			#line 22 "index.tmpl"
+			#line 23 "index.tmpl"
 			out()<<"\n"
 				"    </div>\n"
+				"\n"
+				"    <div>\n"
+				"    <p>\n"
+				"    <a href=\"/page/";
+			#line 23 "index.tmpl"
+			out()<<cppcms::filters::escape(content.prev_page_number);
+			#line 24 "index.tmpl"
+			out()<<"\">上一页</a> &nbsp; &nbsp; &nbsp;\n"
+				"    <a href=\"/page/";
+			#line 24 "index.tmpl"
+			out()<<cppcms::filters::escape(content.next_page_number);
+			#line 29 "index.tmpl"
+			out()<<"\">下一页</a>\n"
+				"    </p>\n"
+				"     </div>\n"
 				"  </body>\n"
 				"</html>\n"
 				"";
-		#line 22 "index.tmpl"
+		#line 29 "index.tmpl"
 		} // end of template render
-	#line 23 "index.tmpl"
+	#line 30 "index.tmpl"
 	private:
-	#line 23 "index.tmpl"
+	#line 30 "index.tmpl"
 		int _domain_id;
-	#line 23 "index.tmpl"
+	#line 30 "index.tmpl"
 	}; // end of class message
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
 } // end of namespace my_skin
 #line 2 "index.tmpl"
 namespace my_skin {
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
 } // end of namespace my_skin
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
 namespace {
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
  cppcms::views::generator my_generator; 
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
  struct loader { 
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
   loader() { 
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
    my_generator.name("my_skin");
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
    my_generator.add_view<my_skin::message,content::message>("message",true);
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
     cppcms::views::pool::instance().add(my_generator);
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
  }
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
 } a_loader;
-#line 24 "index.tmpl"
+#line 31 "index.tmpl"
 } // anon 

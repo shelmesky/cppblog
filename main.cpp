@@ -113,6 +113,12 @@ void cppblog::index_page(std::string number) {
 
     content::message c;
     c.article_list = article_list;
+    if(page == 1) {
+        c.prev_page_number = 1;
+    } else {
+        c.prev_page_number = page - 1;
+    }
+    c.next_page_number = page + 1;
     c.text=">>>Hello<<<";
     render("message",c);
 }
@@ -125,6 +131,8 @@ void cppblog::index()
     content::message c;
     c.article_list = article_list;
     c.text=">>>Hello<<<";
+    c.prev_page_number = 1;
+    c.next_page_number = 2;
     render("message",c);
 }
 
