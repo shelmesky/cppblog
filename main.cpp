@@ -26,7 +26,7 @@ public:
         cppcms::application(srv)
     {
         dispatcher().assign("/article/(\\d+)", &cppblog::show_article, this, 1);
-        mapper().assign("number", "/number/{1}");
+        mapper().assign("number", "/article/{1}");
 
         dispatcher().assign("/smile", &cppblog::smile, this);
         mapper().assign("smile", "/smile");
@@ -104,7 +104,9 @@ int main(int argc,char ** argv)
 
     try {
         cppcms::service srv(argc,argv);
-        srv.applications_pool().mount(cppcms::applications_factory<cppblog>());
+        auto flags = cppcms::app::synchronous;
+        srv.applications_pool().mount(cppcms::create_pool<cppblog>(), cppcms::mount_point(""), flags);
+        srv.applications_pool().mount(cppcms::create_pool<file_server>(), cppcms::mount_point("/file"), flags);
         srv.run();
     }
     catch(std::exception const &e) {

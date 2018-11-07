@@ -1,9 +1,37 @@
 {  
     "service" : {  
         "api" : "http",  
-        "port" : 8080  
+        "port" : 8080,
+        "ip" : "0.0.0.0"
     },  
     "http" : {  
-        "script_names" : [ "/hello" ]  
-    }  
+        "script_names" : [ "/file" ]
+    },
+    "file_server" : {
+         "enable" : true,
+         "listing": true,
+         "alias": [
+           {
+             "url": "/file",
+             "path": "."
+           }
+         ],
+         "document_root" : "./file"
+     },
+    "logging" : {
+      "level" : "info",
+      //"level" : "debug",
+      "stderr" : true,
+      "file" : {
+        "name" : "cppcms.log" ,
+        "max_files" : 3,
+        "append" : true,
+        "timezone" : "GMT+8"
+      },
+      "syslog" : {
+        "enable" : false, //true,
+        "id" : "cppcms",
+        "options" : [ "LOG_CONS" ]
+      }
+    }
 } 

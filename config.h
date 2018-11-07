@@ -12,6 +12,8 @@
 #include <cppcms/http_request.h>
 #include <cppcms/url_dispatcher.h>
 #include <cppcms/url_mapper.h>
+#include <cppcms/mount_point.h>
+#include <cppcms/util.h>
 
 #include <boost/program_options.hpp>
 namespace po = boost::program_options;
@@ -30,5 +32,6 @@ namespace po = boost::program_options;
 
 #include "content.h"
 #include "datatype.h"
+#include "file_server.h"
 
 #endif //CPPBLOG_CONFIG_H
