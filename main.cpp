@@ -67,40 +67,33 @@ std::list<article> cppblog::get_articles(int page) {
     std::list<article>article_list;
     soci::session sql(db_pool);
 
-    int articles_count;
-    sql << "select count(*) from articles", soci::into(articles_count);
-
     std::string sql_str = "select id, title, keyword, dummy_body, "
                           "real_body from articles limit :limit, :offset";
 
-    if (articles_count > 0) {
-        int limit = (page-1)*number_per_page;
-        int offset = number_per_page;
-        soci::rowset<soci::row> rs =
-                (sql.prepare << sql_str, soci::use(limit), soci::use(offset));
+    int limit = (page-1)*number_per_page;
+    int offset = number_per_page;
+    soci::rowset<soci::row> rs =
+            (sql.prepare << sql_str, soci::use(limit), soci::use(offset));
 
-        for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
-            article a;
-            soci::row const &row = *it;
+    for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
+        article a;
+        soci::row const &row = *it;
 
-            a.id = row.get<int>(0);
-            a.title = row.get<std::string>(1);
-            a.keyword = row.get<std::string>(2);
+        a.id = row.get<int>(0);
+        a.title = row.get<std::string>(1);
+        a.keyword = row.get<std::string>(2);
 
-            std::string dummyBody = dummyBodyCache.Read(a.id);
-            if(dummyBody.empty()) {
-                std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
-                a.dummy_body = parser->Parse(dummy_body);
-                dummyBodyCache.Write(a.id, a.dummy_body);
-            } else {
-                a.dummy_body = dummyBody;
-            }
-
-            a.real_body = row.get<std::string>(4);
-            article_list.push_back(a);
+        std::string dummyBody = dummyBodyCache.Read(a.id);
+        if(dummyBody.empty()) {
+            std::stringstream dummy_body = std::stringstream(row.get<std::string>(3));
+            a.dummy_body = parser->Parse(dummy_body);
+            dummyBodyCache.Write(a.id, a.dummy_body);
+        } else {
+            a.dummy_body = dummyBody;
         }
-    } else {
-        std::cout << "articles is empty" << std::endl;
+
+        a.real_body = row.get<std::string>(4);
+        article_list.push_back(a);
     }
 
     return article_list;
@@ -119,7 +112,6 @@ void cppblog::index_page(std::string number) {
         c.prev_page_number = page - 1;
     }
     c.next_page_number = page + 1;
-    c.text=">>>Hello<<<";
     render("message",c);
 }
 
@@ -130,7 +122,6 @@ void cppblog::index()
 
     content::message c;
     c.article_list = article_list;
-    c.text=">>>Hello<<<";
     c.prev_page_number = 1;
     c.next_page_number = 2;
     render("message",c);
