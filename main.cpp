@@ -89,12 +89,15 @@ std::list<article> cppblog::get_articles(int page) {
             std::string input = row.get<std::string>(3);
 
             MKIOT blob((char *)input.c_str(), input.size(), 0);
-            int document_size = blob.compile(0);
+            blob.compile(0);
 
-            char *output_buffer = blob.document(document_size);
+            char *output_buffer;
+
+            blob.document(&output_buffer);
 
             a.dummy_body = std::string(output_buffer);
             dummyBodyCache.Write(a.id, a.dummy_body);
+
         } else {
             a.dummy_body = dummyBody;
         }

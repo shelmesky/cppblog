@@ -22,9 +22,6 @@ public:
     MKIOT operator = (const MKIOT&) = delete;
 
     ~MKIOT() {
-        if(output_buffer != NULL) {
-            free(output_buffer);
-        }
         mkd_cleanup(mmiot);
     }
 
@@ -40,10 +37,8 @@ public:
     char *doc_author()			{ return mkd_doc_author(mmiot); }
     char *doc_date()			{ return mkd_doc_date(mmiot); }
 
-    char * document(size_t document_size) {
-        output_buffer = (char *)malloc(document_size);
-        mkd_document(mmiot, &output_buffer);
-        return output_buffer;
+    int document(char **output_buffer) {
+        return mkd_document(mmiot, output_buffer);
     }
 
     int toc(char **buf_p)		{ return mkd_toc(mmiot, buf_p); }
