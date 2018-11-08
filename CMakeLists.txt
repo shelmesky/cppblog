@@ -11,4 +11,4 @@ add_executable(cppblog index.tmpl.cpp article.tmpl.cpp file_server.cpp  main.cpp
 target_link_libraries(cppblog /usr/local/discount/lib/libmarkdown.a)
 target_link_libraries(cppblog cppcms booster)
 target_link_libraries(cppblog soci_core soci_mysql)
-target_link_libraries(cppblog boost_thread boost_system boost_program_options)
+target_link_libraries(cppblog boost_thread boost_system)

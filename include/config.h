@@ -15,9 +15,6 @@
 #include <cppcms/mount_point.h>
 #include <cppcms/util.h>
 
-#include <boost/program_options.hpp>
-namespace po = boost::program_options;
-
 #include <soci/soci.h>
 #include <soci/connection-pool.h>
 #include <soci/mysql/soci-mysql.h>
