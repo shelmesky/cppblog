@@ -66,4 +66,4 @@ class GFIOT: MKIOT {
     { mmiot = gfm_string(text, size, flags); }
 } ;
 
-#endif/*_MKDIO_CXX*/%
+#endif

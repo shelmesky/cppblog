@@ -31,6 +31,7 @@ namespace po = boost::program_options;
 #include <cstdio>
 
 #include "content.h"
+#include "content_article.h"
 #include "datatype.h"
 #include "file_server.h"
 #include "markdown.h"

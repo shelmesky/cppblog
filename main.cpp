@@ -5,6 +5,7 @@ const int number_per_page = 5;
 const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
+Cache<int, std::string> realBodyCache;
 
 int initSOCIConnectionPool(std::string const& db_type, std::string const& db_conn) {
     try {
@@ -29,9 +30,6 @@ public:
         dispatcher().assign("/article/(\\d+)", &cppblog::show_article, this, 1);
         mapper().assign("article", "/article/{1}");
 
-        dispatcher().assign("/smile", &cppblog::smile, this);
-        mapper().assign("smile", "/smile");
-
         dispatcher().assign("/", &cppblog::index, this);
         mapper().assign("");
 
@@ -43,20 +41,52 @@ public:
     void index();
     void show_article(std::string number);
     void index_page(std::string number);
-    void smile();
     std::list<article> get_articles(int page);
+    article get_single_article(int id);
 };
 
 
 void cppblog::show_article(std::string number) {
     int no = atoi(number.c_str());
-    response().out() << "This number is " << no << "<br/>\n";
-    response().out() << "<a href='" << url("/") << "'>Go back</a>";
+    const article& ret = get_single_article(no);
+    content::message_article message;
+    message.title = ret.title;
+    message.keyword = ret.keyword;
+    message.real_body = ret.real_body;
+
+    render("message_article", message);
 }
 
-void cppblog::smile() {
-    response().out() << ":-) <br/>\n";
-    response().out() << "<a href='" << url("/") << "'>Go back</a>";
+
+article cppblog::get_single_article(int id) {
+    std::shared_ptr<maddy::Parser> parser = std::make_shared<maddy::Parser>();
+    article ret;
+
+    soci::session sql(db_pool);
+
+    using namespace soci;
+
+    sql << "set names utf8mb4";
+    sql << "select id, title, keyword, real_body from articles where id= "
+        << id, into(ret.id), into(ret.title), into(ret.keyword), into(ret.real_body);
+
+    std::string realBody = realBodyCache.Read(id);
+
+    if(realBody.empty()) {
+        MKIOT blob((char *)ret.real_body.c_str(), ret.real_body.size(), 0);
+        blob.compile(0);
+
+        char *output_buffer;
+
+        blob.document(&output_buffer);
+
+        ret.real_body = std::string(output_buffer);
+        realBodyCache.Write(id, ret.real_body);
+    } else {
+        ret.real_body = realBody;
+    }
+
+    return ret;
 }
 
 
