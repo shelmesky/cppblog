@@ -24,6 +24,13 @@ struct article {
 };
 
 
+template <typename T, int count=1>
+std::shared_ptr<T> shared_malloc() {
+    std::shared_ptr<T> ptr(static_cast<T*>(malloc(sizeof(T) * count)), free);
+    return ptr;
+}
+
+
 template <typename keyType, typename valueType>
 class Cache {
 public:

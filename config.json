@@ -1,8 +1,12 @@
-{  "application": {
+{
+  "application": {
         "db_type": "mysql",
-        "db_conn": "db=cppblog user=root password='root'"
+        "db_conn": "db=cppblog user=root password='root' set_charset_name=utf8"
     },
-    "service" : {  
+  "localization": {
+    "locales" : [ "zh_CN.UTF-8" ]
+  },
+  "service" : {
         "api" : "http",  
         "port" : 8080,
         "ip" : "0.0.0.0"
