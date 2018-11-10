@@ -1,12 +1,8 @@
-{
-  "application": {
+{  "application": {
         "db_type": "mysql",
-        "db_conn": "db=cppblog user=root password='root' set_charset_name=utf8"
+        "db_conn": "db=cppblog user=root password='4974481lmh'"
     },
-  "localization": {
-    "locales" : [ "zh_CN.UTF-8" ]
-  },
-  "service" : {
+    "service" : {  
         "api" : "http",  
         "port" : 8080,
         "ip" : "0.0.0.0"
@@ -28,7 +24,7 @@
     "logging" : {
       "level" : "info",
       //"level" : "debug",
-      "stderr" : true,
+      "stderr" : false,
       "file" : {
         "name" : "cppcms.log" ,
         "max_files" : 3,
