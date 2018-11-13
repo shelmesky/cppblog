@@ -115,7 +115,7 @@ namespace my_skin {
 				"            ";
 			#line 82 "article.tmpl.html"
 			out()<<cppcms::filters::raw(content.real_body);
-			#line 225 "article.tmpl.html"
+			#line 199 "article.tmpl.html"
 			out()<<"\n"
 				"          <hr>\n"
 				"\n"
@@ -134,37 +134,11 @@ namespace my_skin {
 				"\n"
 				"          <!-- Single Comment -->\n"
 				"          <div class=\"media mb-4\">\n"
-				"            <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"            <div class=\"media-body\">\n"
-				"              <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"            </div>\n"
 				"          </div>\n"
 				"\n"
 				"          <!-- Comment with nested comments -->\n"
 				"          <div class=\"media mb-4\">\n"
-				"            <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"            <div class=\"media-body\">\n"
-				"              <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"\n"
-				"              <div class=\"media mt-4\">\n"
-				"                <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"                <div class=\"media-body\">\n"
-				"                  <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"                </div>\n"
-				"              </div>\n"
-				"\n"
-				"              <div class=\"media mt-4\">\n"
-				"                <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"                <div class=\"media-body\">\n"
-				"                  <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"                </div>\n"
-				"              </div>\n"
-				"\n"
-				"            </div>\n"
+				"          \n"
 				"          </div>\n"
 				"\n"
 				"        </div>\n"
@@ -260,39 +234,39 @@ namespace my_skin {
 				"\n"
 				"</html>\n"
 				"";
-		#line 225 "article.tmpl.html"
+		#line 199 "article.tmpl.html"
 		} // end of template render
-	#line 226 "article.tmpl.html"
+	#line 200 "article.tmpl.html"
 	private:
-	#line 226 "article.tmpl.html"
+	#line 200 "article.tmpl.html"
 		int _domain_id;
-	#line 226 "article.tmpl.html"
+	#line 200 "article.tmpl.html"
 	}; // end of class message_article
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
 } // end of namespace my_skin
 #line 2 "article.tmpl.html"
 namespace my_skin {
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
 } // end of namespace my_skin
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
 namespace {
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
  cppcms::views::generator my_generator; 
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
  struct loader { 
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
   loader() { 
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
    my_generator.name("my_skin");
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
    my_generator.add_view<my_skin::message_article,content::message_article>("message_article",true);
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
     cppcms::views::pool::instance().add(my_generator);
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
  }
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
 } a_loader;
-#line 227 "article.tmpl.html"
+#line 201 "article.tmpl.html"
 } // anon 
