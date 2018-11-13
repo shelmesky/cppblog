@@ -46,7 +46,7 @@ namespace my_skin {
 				"    <!-- Navigation -->\n"
 				"    <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark fixed-top\">\n"
 				"      <div class=\"container\">\n"
-				"        <a class=\"navbar-brand\" href=\"#\">天地孤影任我行</a>\n"
+				"        <a class=\"navbar-brand\" href=\"/\">天地孤影任我行</a>\n"
 				"        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n"
 				"          <span class=\"navbar-toggler-icon\"></span>\n"
 				"        </button>\n"
@@ -95,11 +95,15 @@ namespace my_skin {
 						"        <div class=\"col-lg-8\">\n"
 						"\n"
 						"          <!-- Title -->\n"
-						"          <h1 class=\"mt-4\">";
+						"          <h3 class=\"mt-4\"><a href=\"/article/";
+					#line 67 "index.tmpl.html"
+					out()<<cppcms::filters::escape(article.id);
+					#line 67 "index.tmpl.html"
+					out()<<"\">";
 					#line 67 "index.tmpl.html"
 					out()<<cppcms::filters::escape(article.title);
 					#line 72 "index.tmpl.html"
-					out()<<"</h1>\n"
+					out()<<"</a></h3>\n"
 						"\n"
 						"          <!-- Author -->\n"
 						"          <p class=\"lead\">\n"
@@ -107,90 +111,57 @@ namespace my_skin {
 						"              <a href=\"#\">";
 					#line 72 "index.tmpl.html"
 					out()<<cppcms::filters::escape(article.keyword);
-					#line 83 "index.tmpl.html"
+					#line 80 "index.tmpl.html"
 					out()<<"</a>\n"
 						"          </p>\n"
-						"\n"
-						"          <hr>\n"
 						"\n"
 						"          <!-- Date/Time -->\n"
 						"          <p>Posted on January 1, 2018 at 12:00 PM</p>\n"
 						"\n"
-						"          <hr>\n"
-						"\n"
+						"          摘要: </br>\n"
 						"          <!-- Post Content -->\n"
 						"            ";
-					#line 83 "index.tmpl.html"
+					#line 80 "index.tmpl.html"
 					out()<<cppcms::filters::raw(article.dummy_body);
-					#line 86 "index.tmpl.html"
+					#line 81 "index.tmpl.html"
 					out()<<"\n"
+						"          <a href=\"/article/";
+					#line 81 "index.tmpl.html"
+					out()<<cppcms::filters::escape(article.id);
+					#line 84 "index.tmpl.html"
+					out()<<"\">阅读全文</a></br>\n"
 						"          <hr>\n"
 						"\n"
 						"          ";
-				#line 86 "index.tmpl.html"
+				#line 84 "index.tmpl.html"
 				} // end of item
-				#line 88 "index.tmpl.html"
+				#line 86 "index.tmpl.html"
 				out()<<"\n"
 					"\n"
 					"          ";
-			#line 88 "index.tmpl.html"
+			#line 86 "index.tmpl.html"
 			 } else {
-				#line 90 "index.tmpl.html"
+				#line 88 "index.tmpl.html"
 				out()<<"\n"
 					"          <h3>没有文章</h3>\n"
 					"          ";
-			#line 90 "index.tmpl.html"
+			#line 88 "index.tmpl.html"
 			} // end of empty
-			#line 225 "index.tmpl.html"
+			#line 188 "index.tmpl.html"
 			out()<<"\n"
 				"\n"
 				"\n"
 				"          <!-- Comments Form -->\n"
-				"          <div class=\"card my-4\">\n"
-				"            <h5 class=\"card-header\">Leave a Comment:</h5>\n"
-				"            <div class=\"card-body\">\n"
-				"              <form>\n"
-				"                <div class=\"form-group\">\n"
-				"                  <textarea class=\"form-control\" rows=\"3\"></textarea>\n"
-				"                </div>\n"
-				"                <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n"
-				"              </form>\n"
-				"            </div>\n"
-				"          </div>\n"
+				"\n"
 				"\n"
 				"          <!-- Single Comment -->\n"
 				"          <div class=\"media mb-4\">\n"
-				"            <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"            <div class=\"media-body\">\n"
-				"              <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"            </div>\n"
+				"\n"
 				"          </div>\n"
 				"\n"
 				"          <!-- Comment with nested comments -->\n"
 				"          <div class=\"media mb-4\">\n"
-				"            <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"            <div class=\"media-body\">\n"
-				"              <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
 				"\n"
-				"              <div class=\"media mt-4\">\n"
-				"                <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"                <div class=\"media-body\">\n"
-				"                  <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"                </div>\n"
-				"              </div>\n"
-				"\n"
-				"              <div class=\"media mt-4\">\n"
-				"                <img class=\"d-flex mr-3 rounded-circle\" src=\"http://placehold.it/50x50\" alt=\"\">\n"
-				"                <div class=\"media-body\">\n"
-				"                  <h5 class=\"mt-0\">Commenter Name</h5>\n"
-				"                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n"
-				"                </div>\n"
-				"              </div>\n"
-				"\n"
-				"            </div>\n"
 				"          </div>\n"
 				"\n"
 				"        </div>\n"
@@ -265,7 +236,7 @@ namespace my_skin {
 				"    <!-- Footer -->\n"
 				"    <footer class=\"py-5 bg-dark\">\n"
 				"      <div class=\"container\">\n"
-				"        <p class=\"m-0 text-center text-white\">Copyright &copy; Your Website 2018</p>\n"
+				"        <p class=\"m-0 text-center text-white\">Copyright &copy; <a href=\"https://github.com/shelmesky/cppblog\">CPPBlog</a> 2018</p>\n"
 				"      </div>\n"
 				"      <!-- /.container -->\n"
 				"    </footer>\n"
@@ -278,39 +249,39 @@ namespace my_skin {
 				"\n"
 				"</html>\n"
 				"";
-		#line 225 "index.tmpl.html"
+		#line 188 "index.tmpl.html"
 		} // end of template render
-	#line 226 "index.tmpl.html"
+	#line 189 "index.tmpl.html"
 	private:
-	#line 226 "index.tmpl.html"
+	#line 189 "index.tmpl.html"
 		int _domain_id;
-	#line 226 "index.tmpl.html"
+	#line 189 "index.tmpl.html"
 	}; // end of class message
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
 } // end of namespace my_skin
 #line 2 "index.tmpl.html"
 namespace my_skin {
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
 } // end of namespace my_skin
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
 namespace {
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
  cppcms::views::generator my_generator; 
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
  struct loader { 
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
   loader() { 
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
    my_generator.name("my_skin");
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
    my_generator.add_view<my_skin::message,content::message>("message",true);
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
     cppcms::views::pool::instance().add(my_generator);
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
  }
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
 } a_loader;
-#line 227 "index.tmpl.html"
+#line 190 "index.tmpl.html"
 } // anon 
