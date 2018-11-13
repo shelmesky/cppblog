@@ -150,13 +150,28 @@ namespace my_skin {
 					"          ";
 			#line 91 "index.tmpl.html"
 			} // end of empty
-			#line 201 "index.tmpl.html"
+			#line 95 "index.tmpl.html"
 			out()<<"\n"
+				"\n"
+				"          <div>\n"
+				"            <p>\n"
+				"              <a href=\"/page/";
+			#line 95 "index.tmpl.html"
+			out()<<cppcms::filters::escape(content.prev_page_number);
+			#line 96 "index.tmpl.html"
+			out()<<"\">上一页</a> &nbsp; &nbsp; &nbsp;\n"
+				"              <a href=\"/page/";
+			#line 96 "index.tmpl.html"
+			out()<<cppcms::filters::escape(content.next_page_number);
+			#line 208 "index.tmpl.html"
+			out()<<"\">下一页</a>\n"
+				"            </p>\n"
+				"          </div>\n"
+				"          <!-- Comments Form -->\n"
 				"\n"
 				"        </div>\n"
 				"\n"
 				"\n"
-				"          <!-- Comments Form -->\n"
 				"\n"
 				"\n"
 				"          <!-- Single Comment -->\n"
@@ -262,39 +277,39 @@ namespace my_skin {
 				"\n"
 				"</html>\n"
 				"";
-		#line 201 "index.tmpl.html"
+		#line 208 "index.tmpl.html"
 		} // end of template render
-	#line 202 "index.tmpl.html"
+	#line 209 "index.tmpl.html"
 	private:
-	#line 202 "index.tmpl.html"
+	#line 209 "index.tmpl.html"
 		int _domain_id;
-	#line 202 "index.tmpl.html"
+	#line 209 "index.tmpl.html"
 	}; // end of class message
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
 } // end of namespace my_skin
 #line 2 "index.tmpl.html"
 namespace my_skin {
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
 } // end of namespace my_skin
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
 namespace {
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
  cppcms::views::generator my_generator; 
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
  struct loader { 
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
   loader() { 
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
    my_generator.name("my_skin");
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
    my_generator.add_view<my_skin::message,content::message>("message",true);
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
     cppcms::views::pool::instance().add(my_generator);
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
  }
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
 } a_loader;
-#line 203 "index.tmpl.html"
+#line 210 "index.tmpl.html"
 } // anon 
