@@ -1,7 +1,7 @@
 #include "config.h"
 
 
-const int number_per_page = 5;
+const int number_per_page = 10;
 const size_t poolSize = 20;
 soci::connection_pool db_pool(poolSize);
 Cache<int, std::string> dummyBodyCache;
