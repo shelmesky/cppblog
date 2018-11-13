@@ -21,7 +21,7 @@ namespace my_skin {
 		#line 4 "index.tmpl.html"
 			cppcms::translation_domain_scope _trs(out(),_domain_id);
 
-			#line 64 "index.tmpl.html"
+			#line 67 "index.tmpl.html"
 			out()<<"\n"
 				"<html lang=\"en\">\n"
 				"\n"
@@ -82,41 +82,40 @@ namespace my_skin {
 				"      <div class=\"row\">\n"
 				"\n"
 				"\n"
-				"        ";
-			#line 64 "index.tmpl.html"
+				"        <!-- Post Content Column -->\n"
+				"        <div class=\"col-lg-8\">\n"
+				"\n"
+				"          ";
+			#line 67 "index.tmpl.html"
 			if((content.article_list).begin()!=(content.article_list).end()) {
-				#line 65 "index.tmpl.html"
+				#line 68 "index.tmpl.html"
 				out()<<"\n"
-					"        ";
-				#line 65 "index.tmpl.html"
+					"          ";
+				#line 68 "index.tmpl.html"
 				for(CPPCMS_TYPEOF((content.article_list).begin()) article_ptr=(content.article_list).begin(),article_ptr_end=(content.article_list).end();article_ptr!=article_ptr_end;++article_ptr) {
-				#line 65 "index.tmpl.html"
+				#line 68 "index.tmpl.html"
 				CPPCMS_TYPEOF(*article_ptr) &article=*article_ptr;
-					#line 72 "index.tmpl.html"
+					#line 71 "index.tmpl.html"
 					out()<<"\n"
-						"\n"
-						"\n"
-						"        <!-- Post Content Column -->\n"
-						"        <div class=\"col-lg-8\">\n"
 						"\n"
 						"          <!-- Title -->\n"
 						"          <h3 class=\"mt-4\"><a href=\"/article/";
-					#line 72 "index.tmpl.html"
+					#line 71 "index.tmpl.html"
 					out()<<cppcms::filters::escape(article.id);
-					#line 72 "index.tmpl.html"
+					#line 71 "index.tmpl.html"
 					out()<<"\">";
-					#line 72 "index.tmpl.html"
+					#line 71 "index.tmpl.html"
 					out()<<cppcms::filters::escape(article.title);
-					#line 77 "index.tmpl.html"
+					#line 76 "index.tmpl.html"
 					out()<<"</a></h3>\n"
 						"\n"
 						"          <!-- Author -->\n"
 						"          <p class=\"lead\">\n"
 						"              标签:\n"
 						"              <a href=\"#\">";
-					#line 77 "index.tmpl.html"
+					#line 76 "index.tmpl.html"
 					out()<<cppcms::filters::escape(article.keyword);
-					#line 85 "index.tmpl.html"
+					#line 84 "index.tmpl.html"
 					out()<<"</a>\n"
 						"          </p>\n"
 						"\n"
@@ -126,34 +125,36 @@ namespace my_skin {
 						"          摘要: </br>\n"
 						"          <!-- Post Content -->\n"
 						"            ";
-					#line 85 "index.tmpl.html"
+					#line 84 "index.tmpl.html"
 					out()<<cppcms::filters::raw(article.dummy_body);
-					#line 86 "index.tmpl.html"
+					#line 85 "index.tmpl.html"
 					out()<<"\n"
 						"          <a href=\"/article/";
-					#line 86 "index.tmpl.html"
+					#line 85 "index.tmpl.html"
 					out()<<cppcms::filters::escape(article.id);
-					#line 89 "index.tmpl.html"
+					#line 88 "index.tmpl.html"
 					out()<<"\">阅读全文</a></br>\n"
 						"          <hr>\n"
 						"\n"
 						"          ";
-				#line 89 "index.tmpl.html"
+				#line 88 "index.tmpl.html"
 				} // end of item
-				#line 91 "index.tmpl.html"
+				#line 90 "index.tmpl.html"
 				out()<<"\n"
 					"\n"
 					"          ";
-			#line 91 "index.tmpl.html"
+			#line 90 "index.tmpl.html"
 			 } else {
-				#line 93 "index.tmpl.html"
+				#line 92 "index.tmpl.html"
 				out()<<"\n"
 					"          <h3>没有文章</h3>\n"
 					"          ";
-			#line 93 "index.tmpl.html"
+			#line 92 "index.tmpl.html"
 			} // end of empty
 			#line 202 "index.tmpl.html"
 			out()<<"\n"
+				"\n"
+				"        </div>\n"
 				"\n"
 				"\n"
 				"          <!-- Comments Form -->\n"
@@ -169,7 +170,6 @@ namespace my_skin {
 				"\n"
 				"          </div>\n"
 				"\n"
-				"        </div>\n"
 				"\n"
 				"        <!-- Sidebar Widgets Column -->\n"
 				"        <div class=\"col-md-4\">\n"

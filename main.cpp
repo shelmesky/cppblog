@@ -67,7 +67,7 @@ article cppblog::get_single_article(int id) {
     using namespace soci;
 
     sql << "set names utf8mb4";
-    sql << "select id, title, keyword, real_body from articles where id= "
+    sql << "select id, title, IFNULL(keyword, ''), IFNULL(real_body, '') from articles where id= "
         << id, into(ret.id), into(ret.title), into(ret.keyword), into(ret.real_body);
 
     std::string realBody = realBodyCache.Read(id);
@@ -98,8 +98,8 @@ std::list<article> cppblog::get_articles(int page) {
 
     sql << "Set NAMES utf8mb4";
 
-    std::string sql_str = "select id, title, keyword, dummy_body, "
-                          "real_body from articles limit :limit, :offset";
+    std::string sql_str = "select id, title, IFNULL(keyword, ''), IFNULL(dummy_body, ''), "
+                          "real_body from articles order by id desc limit :limit, :offset";
 
     int limit = (page-1)*number_per_page;
     int offset = number_per_page;
