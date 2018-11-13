@@ -43,12 +43,13 @@ private:
     typedef boost::shared_lock<boost::shared_mutex> read_lock;
     typedef boost::unique_lock<boost::shared_mutex> write_lock;
     typedef boost::shared_mutex read_write_mutex;
+    read_write_mutex _locker;
 };
 
 template <typename keyType, typename valueType>
 valueType Cache<keyType, valueType>::Read(keyType key) {
     valueType value;
-    read_lock rlock(read_write_mutex);
+    read_lock rlock(_locker);
     typename std::unordered_map<keyType, valueType>::const_iterator result = _mapCache.find(key);
     if(result != _mapCache.end()) {
         value = result->second;
@@ -58,7 +59,7 @@ valueType Cache<keyType, valueType>::Read(keyType key) {
 
 template <typename keyType, typename valueType>
 void Cache<keyType, valueType>::Write(keyType key, valueType value) {
-    write_lock rlock(read_write_mutex);
+    write_lock rlock(_locker);
     if (_mapCache.find(key) != _mapCache.end()) {
         _mapCache.erase(key);
     }
@@ -67,7 +68,7 @@ void Cache<keyType, valueType>::Write(keyType key, valueType value) {
 
 template <typename keyType, typename valueType>
 void Cache<keyType, valueType>::Delete(keyType key) {
-    write_lock rlock(read_write_mutex);
+    write_lock rlock(_locker);
     _mapCache.erase(key);
 }
 
