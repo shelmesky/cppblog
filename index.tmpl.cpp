@@ -40,7 +40,7 @@ namespace my_skin {
 				"    <link href=\"/file/css/blog-post.css\" rel=\"stylesheet\">\n"
 				"\n"
 				"\n"
-				"    <link rel=\"stylesheet\" href=\"/file/highlight/styles/default.min.css\">\n"
+				"    <link rel=\"stylesheet\" href=\"/file/highlight/styles/github.css\">\n"
 				"    <script src=\"/file/highlight/highlight.pack.js\"></script>\n"
 				"\n"
 				"  </head>\n"
