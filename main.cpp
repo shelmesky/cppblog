@@ -1,4 +1,4 @@
-#include "config.h"
+#include "app.h"
 
 
 const int number_per_page = 10;
