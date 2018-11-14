@@ -59,7 +59,7 @@ public:
 
 
 void cppblog::show_article(std::string number) {
-    int no = atoi(number.c_str());
+    int no = std::stoi(number);
     const article& ret = get_single_article(no);
     content::message_article message;
     message.title = ret.title;
@@ -153,7 +153,7 @@ std::list<article> cppblog::get_articles(int page) {
 
 
 void cppblog::index_page(std::string number) {
-    int page = atoi(number.c_str());
+    int page = std::stoi(number);
     std::list<article> article_list = get_articles(page);
 
     content::message c;
