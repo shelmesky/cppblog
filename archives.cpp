@@ -8,8 +8,6 @@ extern GlobalConfig globalConfig;
 
 
 std::list<article> cppblog::get_archives(int page) {
-    std::shared_ptr<maddy::Parser> parser = std::make_shared<maddy::Parser>();
-
     std::list<article>article_list;
     soci::session sql(*globalConfig.db_pool);
 

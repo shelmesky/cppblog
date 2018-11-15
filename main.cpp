@@ -31,7 +31,6 @@ void cppblog::show_article(std::string number) {
 
 
 article cppblog::get_single_article(int id) {
-    std::shared_ptr<maddy::Parser> parser = std::make_shared<maddy::Parser>();
     article ret;
 
     soci::session sql(*globalConfig.db_pool);
@@ -63,8 +62,6 @@ article cppblog::get_single_article(int id) {
 
 
 std::list<article> cppblog::get_articles(int page) {
-    std::shared_ptr<maddy::Parser> parser = std::make_shared<maddy::Parser>();
-
     std::list<article>article_list;
     soci::session sql(*globalConfig.db_pool);
 

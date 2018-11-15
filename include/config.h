@@ -19,8 +19,6 @@
 #include <soci/connection-pool.h>
 #include <soci/mysql/soci-mysql.h>
 
-#include <maddy/parser.h>
-
 #include <iostream>
 #include <stdlib.h>
 #include <memory>
