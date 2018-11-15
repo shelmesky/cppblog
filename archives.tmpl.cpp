@@ -1,27 +1,27 @@
-#line 1 "archives.tmpl.html"
+#line 1 "templates/archives.tmpl.html"
 #include "content_archives.h" 
-#line 2 "archives.tmpl.html"
+#line 2 "templates/archives.tmpl.html"
 namespace my_skin {
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 	struct  message_archives :public cppcms::base_view
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 	{
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 		content::message_archives &content;
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 		message_archives(std::ostream &_s,content::message_archives &_content): cppcms::base_view(_s),content(_content),_domain_id(0)
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 		{
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 			_domain_id=booster::locale::ios_info::get(_s).domain_id();
-	#line 3 "archives.tmpl.html"
+	#line 3 "templates/archives.tmpl.html"
 		}
-		#line 4 "archives.tmpl.html"
+		#line 4 "templates/archives.tmpl.html"
 		virtual void render() {
-		#line 4 "archives.tmpl.html"
+		#line 4 "templates/archives.tmpl.html"
 			cppcms::translation_domain_scope _trs(out(),_domain_id);
 
-			#line 66 "archives.tmpl.html"
+			#line 66 "templates/archives.tmpl.html"
 			out()<<"\n"
 				"<html lang=\"en\">\n"
 				"\n"
@@ -85,63 +85,63 @@ namespace my_skin {
 				"        <div class=\"col-lg-8\">\n"
 				"\n"
 				"          ";
-			#line 66 "archives.tmpl.html"
+			#line 66 "templates/archives.tmpl.html"
 			if((content.archives_list).begin()!=(content.archives_list).end()) {
-				#line 67 "archives.tmpl.html"
+				#line 67 "templates/archives.tmpl.html"
 				out()<<"\n"
 					"          ";
-				#line 67 "archives.tmpl.html"
+				#line 67 "templates/archives.tmpl.html"
 				for(CPPCMS_TYPEOF((content.archives_list).begin()) article_ptr=(content.archives_list).begin(),article_ptr_end=(content.archives_list).end();article_ptr!=article_ptr_end;++article_ptr) {
-				#line 67 "archives.tmpl.html"
+				#line 67 "templates/archives.tmpl.html"
 				CPPCMS_TYPEOF(*article_ptr) &article=*article_ptr;
-					#line 71 "archives.tmpl.html"
+					#line 71 "templates/archives.tmpl.html"
 					out()<<"\n"
 						"\n"
 						"          <p></p>\n"
 						"          <!-- list archives -->\n"
 						"          <p> ";
-					#line 71 "archives.tmpl.html"
+					#line 71 "templates/archives.tmpl.html"
 					out()<<cppcms::filters::escape(article.id);
-					#line 71 "archives.tmpl.html"
+					#line 71 "templates/archives.tmpl.html"
 					out()<<" <a href=\"/article/";
-					#line 71 "archives.tmpl.html"
+					#line 71 "templates/archives.tmpl.html"
 					out()<<cppcms::filters::escape(article.id);
-					#line 71 "archives.tmpl.html"
+					#line 71 "templates/archives.tmpl.html"
 					out()<<"\">";
-					#line 71 "archives.tmpl.html"
+					#line 71 "templates/archives.tmpl.html"
 					out()<<cppcms::filters::escape(article.title);
-					#line 73 "archives.tmpl.html"
+					#line 73 "templates/archives.tmpl.html"
 					out()<<"</a></p>\n"
 						"\n"
 						"          ";
-				#line 73 "archives.tmpl.html"
+				#line 73 "templates/archives.tmpl.html"
 				} // end of item
-				#line 75 "archives.tmpl.html"
+				#line 75 "templates/archives.tmpl.html"
 				out()<<"\n"
 					"\n"
 					"          ";
-			#line 75 "archives.tmpl.html"
+			#line 75 "templates/archives.tmpl.html"
 			 } else {
-				#line 77 "archives.tmpl.html"
+				#line 77 "templates/archives.tmpl.html"
 				out()<<"\n"
 					"          <h3>没有文章</h3>\n"
 					"          ";
-			#line 77 "archives.tmpl.html"
+			#line 77 "templates/archives.tmpl.html"
 			} // end of empty
-			#line 81 "archives.tmpl.html"
+			#line 81 "templates/archives.tmpl.html"
 			out()<<"\n"
 				"\n"
 				"          <div>\n"
 				"            <p>\n"
 				"              <a href=\"/archives_page/";
-			#line 81 "archives.tmpl.html"
+			#line 81 "templates/archives.tmpl.html"
 			out()<<cppcms::filters::escape(content.prev_page_number);
-			#line 82 "archives.tmpl.html"
+			#line 82 "templates/archives.tmpl.html"
 			out()<<"\">上一页</a> &nbsp; &nbsp; &nbsp;\n"
 				"              <a href=\"/archives_page/";
-			#line 82 "archives.tmpl.html"
+			#line 82 "templates/archives.tmpl.html"
 			out()<<cppcms::filters::escape(content.next_page_number);
-			#line 192 "archives.tmpl.html"
+			#line 192 "templates/archives.tmpl.html"
 			out()<<"\">下一页</a>\n"
 				"            </p>\n"
 				"          </div>\n"
@@ -253,39 +253,39 @@ namespace my_skin {
 				"\n"
 				"</html>\n"
 				"";
-		#line 192 "archives.tmpl.html"
+		#line 192 "templates/archives.tmpl.html"
 		} // end of template render
-	#line 193 "archives.tmpl.html"
+	#line 193 "templates/archives.tmpl.html"
 	private:
-	#line 193 "archives.tmpl.html"
+	#line 193 "templates/archives.tmpl.html"
 		int _domain_id;
-	#line 193 "archives.tmpl.html"
+	#line 193 "templates/archives.tmpl.html"
 	}; // end of class message_archives
-#line 194 "archives.tmpl.html"
+#line 194 "templates/archives.tmpl.html"
 } // end of namespace my_skin
-#line 2 "archives.tmpl.html"
+#line 2 "templates/archives.tmpl.html"
 namespace my_skin {
-#line 194 "archives.tmpl.html"
+#line 194 "templates/archives.tmpl.html"
 } // end of namespace my_skin
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
 namespace {
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
  cppcms::views::generator my_generator; 
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
  struct loader { 
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
   loader() { 
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
    my_generator.name("my_skin");
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
    my_generator.add_view<my_skin::message_archives,content::message_archives>("message_archives",true);
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
     cppcms::views::pool::instance().add(my_generator);
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
  }
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
 } a_loader;
-#line 195 "archives.tmpl.html"
+#line 195 "templates/archives.tmpl.html"
 } // anon 
