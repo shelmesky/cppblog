@@ -114,12 +114,16 @@ namespace my_skin {
 						"              <a href=\"#\">";
 					#line 75 "templates/index.tmpl.html"
 					out()<<cppcms::filters::escape(article.keyword);
-					#line 83 "templates/index.tmpl.html"
+					#line 79 "templates/index.tmpl.html"
 					out()<<"</a>\n"
 						"          </p>\n"
 						"\n"
 						"          <!-- Date/Time -->\n"
-						"          <p>Posted on January 1, 2018 at 12:00 PM</p>\n"
+						"          <p>Posted on ";
+					#line 79 "templates/index.tmpl.html"
+					out()<<cppcms::filters::escape(article.created_time);
+					#line 83 "templates/index.tmpl.html"
+					out()<<"</p>\n"
 						"\n"
 						"          摘要: </br>\n"
 						"          <!-- Post Content -->\n"

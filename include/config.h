@@ -26,6 +26,7 @@
 #include <memory>
 #include <string>
 #include <cstdio>
+#include <time.h>
 
 #include "content.h"
 #include "content_article.h"

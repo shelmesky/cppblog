@@ -21,6 +21,7 @@ struct article {
     std::string keyword;
     std::string dummy_body;
     std::string real_body;
+    std::string created_time;
 };
 
 

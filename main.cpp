@@ -68,10 +68,13 @@ std::list<article> cppblog::get_articles(int page) {
     std::list<article>article_list;
     soci::session sql(*globalConfig.db_pool);
 
+    char time_buffer[32];
+
     sql << "set names utf8mb4";
 
     std::string sql_str = "select id, title, IFNULL(keyword, ''), IFNULL(dummy_body, ''), "
-                          "real_body from articles order by id desc limit :limit, :offset";
+                          "real_body, IFNULL(created_time, CAST('1970-01-01 00:00:01' as DATETIME)) "
+                          "from articles order by id desc limit :limit, :offset";
 
     int limit = (page-1)*globalConfig.number_per_page;
     int offset = globalConfig.number_per_page;
@@ -105,6 +108,9 @@ std::list<article> cppblog::get_articles(int page) {
         }
 
         a.real_body = row.get<std::string>(4);
+        std::tm created_time = row.get<std::tm>(5);
+        std::strftime(time_buffer, 64, "%Y-%m-%d %H:%M:%S", &created_time);
+        a.created_time = time_buffer;
         article_list.push_back(a);
     }
 
