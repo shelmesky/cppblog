@@ -19,19 +19,23 @@ public:
         dispatcher().assign("/", &cppblog::index, this);
         mapper().assign("");
 
+        dispatcher().assign("/page/(\\d+)", &cppblog::index_page, this, 1);
+        mapper().assign("page", "/page/{1}");
+
         dispatcher().assign("/archives", &cppblog::archives, this);
         mapper().assign("/archives");
 
-        dispatcher().assign("/page/(\\d+)", &cppblog::index_page, this, 1);
-        mapper().assign("page", "/page/{1}");
+        dispatcher().assign("/archives_page/(\\d+)", &cppblog::archives_page, this, 1);
+        mapper().assign("archives_page", "/archives_page/{1}");
 
         mapper().root("/");
     }
 
     void index();
-    void archives();
-    void show_article(std::string number);
     void index_page(std::string number);
+    void show_article(std::string number);
+    void archives();
+    void archives_page(std::string number);
     std::list<article> get_articles(int page);
     std::list<article> get_archives(int page);
     article get_single_article(int id);

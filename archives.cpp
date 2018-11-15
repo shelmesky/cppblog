@@ -45,3 +45,18 @@ void cppblog::archives() {
     c.next_page_number = 2;
     render("message_archives",c);
 }
+
+void cppblog::archives_page(std::string number) {
+    int page = std::stoi(number);
+    std::list<article> archives_list = get_archives(page);
+
+    content::message_archives c;
+    c.archives_list = archives_list;
+    if(page == 1) {
+        c.prev_page_number = 1;
+    } else {
+        c.prev_page_number = page - 1;
+    }
+    c.next_page_number = page + 1;
+    render("message_archives",c);
+}
