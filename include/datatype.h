@@ -38,6 +38,10 @@ public:
     void Write(keyType key, valueType value);
     void Delete(keyType key);
 
+    Cache() = default;
+    Cache(const Cache&) = delete;
+    Cache& operator = (const Cache&) = delete;
+
 private:
     std::unordered_map<keyType, valueType> _mapCache;
     typedef boost::shared_lock<boost::shared_mutex> read_lock;
