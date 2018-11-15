@@ -8,7 +8,7 @@ include_directories(/usr/include/mysql)
 include_directories(./include)
 
 add_executable(cppblog index.tmpl.cpp article.tmpl.cpp archives.tmpl.cpp file_server.cpp archives.cpp main.cpp)
-target_link_libraries(cppblog /usr/local/discount/lib/libmarkdown.a)
+target_link_libraries(cppblog /usr/local/lib/libmarkdown.a)
 target_link_libraries(cppblog cppcms booster)
 target_link_libraries(cppblog soci_core soci_mysql)
 target_link_libraries(cppblog boost_thread boost_system)
