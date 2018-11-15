@@ -231,7 +231,7 @@ namespace my_skin {
 				"    <!-- Footer -->\n"
 				"    <footer class=\"py-5 bg-dark\">\n"
 				"      <div class=\"container\">\n"
-				"        <p class=\"m-0 text-center text-white\">Copyright &copy; <a href=\"https://github.com/shelmesky/cppblog\">CPPBlog</a> 2018</p>\n"
+				"        <p class=\"m-0 text-center text-white\">Copyright &copy; <a href=\"https://github.com/shelmesky/cppblog\" target=\"_blank\">CPPBlog</a> 2018</p>\n"
 				"      </div>\n"
 				"      <!-- /.container -->\n"
 				"    </footer>\n"
