@@ -1,6 +1,6 @@
 {  "application": {
         "db_type": "mysql",
-        "db_conn": "db=cppblog user=root password='4974481lmh'"
+        "db_conn": "db=cppblog user=root password='root'"
     },
     "service" : {  
         "api" : "http",  
