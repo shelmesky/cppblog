@@ -1,6 +1,6 @@
 #include "app.h"
 
-GlobalConfig globalConfig(10, 20);
+GlobalConfig globalConfig(10, 15);
 
 
 int initSOCIConnectionPool(std::string const& db_type, std::string const& db_conn) {
@@ -68,7 +68,7 @@ std::list<article> cppblog::get_articles(int page) {
     std::list<article>article_list;
     soci::session sql(*globalConfig.db_pool);
 
-    sql << "Set NAMES utf8mb4";
+    sql << "set names utf8mb4";
 
     std::string sql_str = "select id, title, IFNULL(keyword, ''), IFNULL(dummy_body, ''), "
                           "real_body from articles order by id desc limit :limit, :offset";

@@ -33,6 +33,7 @@ public:
     void show_article(std::string number);
     void index_page(std::string number);
     std::list<article> get_articles(int page);
+    std::list<article> get_archives(int page);
     article get_single_article(int id);
 };
 

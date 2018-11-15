@@ -29,6 +29,7 @@
 
 #include "content.h"
 #include "content_article.h"
+#include "content_archives.h"
 #include "datatype.h"
 #include "file_server.h"
 #include "markdown.h"

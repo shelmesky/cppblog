@@ -1,0 +1,193 @@
+<% c++ #include "content_archives.h" %>
+<% skin my_skin %>
+<% view message_archives uses content::message_archives %>
+<% template render() %>
+<html lang="en">
+
+  <head>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>天地孤影任我行</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/file/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/file/css/blog-post.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/file/highlight/styles/github.css">
+    <script src="/file/highlight/highlight.pack.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">天地孤影任我行</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+          <% foreach article in archives_list %>
+          <% item %>
+
+          <!-- list archives -->
+          <p> <%= article.id %> <a href="/article/<%= article.id %>"><%= article.title %></a></p>
+
+          <% end %>
+
+          <% empty %>
+          <h3>没有文章</h3>
+          <% end %>
+
+          <div>
+            <p>
+              <a href="/page/<%= prev_page_number %>">上一页</a> &nbsp; &nbsp; &nbsp;
+              <a href="/page/<%= next_page_number %>">下一页</a>
+            </p>
+          </div>
+          <!-- Comments Form -->
+
+        </div>
+
+
+          <!-- Single Comment -->
+          <div class="media mb-4">
+
+          </div>
+
+          <!-- Comment with nested comments -->
+          <div class="media mb-4">
+
+          </div>
+
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">C/C++</a>
+                    </li>
+                    <li>
+                      <a href="#">Linux</a>
+                    </li>
+                    <li>
+                      <a href="#">内核</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">操作系统</a>
+                    </li>
+                    <li>
+                      <a href="#">网络</a>
+                    </li>
+                    <li>
+                      <a href="#">Golang</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
+              ...
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; <a href="https://github.com/shelmesky/cppblog">CPPBlog</a> 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/file/vendor/jquery/jquery.min.js"></script>
+    <script src="/file/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        })
+    </script>
+
+  </body>
+
+</html>
+<% end template %>
+<% end view %>
+<% end skin %>
