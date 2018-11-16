@@ -34,7 +34,7 @@ namespace my_skin {
 				"    <title>";
 			#line 13 "templates/article.tmpl.html"
 			out()<<cppcms::filters::escape(content.title);
-			#line 69 "templates/article.tmpl.html"
+			#line 64 "templates/article.tmpl.html"
 			out()<<" - 天地孤影任我行</title>\n"
 				"\n"
 				"    <!-- Bootstrap core CSS -->\n"
@@ -45,11 +45,6 @@ namespace my_skin {
 				"\n"
 				"    <link rel=\"stylesheet\" href=\"/file/static/highlight/styles/github.css\">\n"
 				"    <script src=\"/file/static/highlight/highlight.pack.js\"></script>\n"
-				"\n"
-				"    <link rel=\"stylesheet\" href=\"/file/static/css/gitment.default.css\">\n"
-				"    <script src=\"/file/static/javascript/gitment.browser.js\"></script>\n"
-				"\n"
-				"\n"
 				"  </head>\n"
 				"\n"
 				"  <body>\n"
@@ -92,18 +87,18 @@ namespace my_skin {
 				"\n"
 				"          <!-- Title -->\n"
 				"          <h1 class=\"mt-4\">";
-			#line 69 "templates/article.tmpl.html"
+			#line 64 "templates/article.tmpl.html"
 			out()<<cppcms::filters::escape(content.title);
-			#line 74 "templates/article.tmpl.html"
+			#line 69 "templates/article.tmpl.html"
 			out()<<"</h1>\n"
 				"\n"
 				"          <!-- Author -->\n"
 				"          <p class=\"lead\">\n"
 				"              标签:\n"
 				"              <a href=\"#\">";
-			#line 74 "templates/article.tmpl.html"
+			#line 69 "templates/article.tmpl.html"
 			out()<<cppcms::filters::escape(content.keyword);
-			#line 85 "templates/article.tmpl.html"
+			#line 80 "templates/article.tmpl.html"
 			out()<<"</a>\n"
 				"          </p>\n"
 				"\n"
@@ -116,9 +111,9 @@ namespace my_skin {
 				"\n"
 				"          <!-- Post Content -->\n"
 				"            ";
-			#line 85 "templates/article.tmpl.html"
+			#line 80 "templates/article.tmpl.html"
 			out()<<cppcms::filters::raw(content.real_body);
-			#line 211 "templates/article.tmpl.html"
+			#line 197 "templates/article.tmpl.html"
 			out()<<"\n"
 				"          <hr>\n"
 				"\n"
@@ -126,7 +121,12 @@ namespace my_skin {
 				"          <div class=\"card my-4\">\n"
 				"            <h5 class=\"card-header\">Leave a Comment:</h5>\n"
 				"            <div class=\"card-body\">\n"
-				"              <div id=\"gitment-comments\"></div>\n"
+				"              <form>\n"
+				"                <div class=\"form-group\">\n"
+				"                  <textarea class=\"form-control\" rows=\"3\"></textarea>\n"
+				"                </div>\n"
+				"                <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n"
+				"              </form>\n"
 				"            </div>\n"
 				"          </div>\n"
 				"\n"
@@ -225,20 +225,6 @@ namespace my_skin {
 				"            $('pre code').each(function(i, block) {\n"
 				"                hljs.highlightBlock(block);\n"
 				"            });\n"
-				"\n"
-				"            const gitment = new Gitment({\n"
-				"                id: document.location.href, // optional\n"
-				"                owner: 'roy.lieu@gmail.com',\n"
-				"                repo: 'gitment-repo',\n"
-				"                oauth: {\n"
-				"                    client_id: '1ed6fa12336d3a6ebf20',\n"
-				"                    client_secret: '57ca20e5163b8aa4ef6e1e3ed4b175afcce0a1bb',\n"
-				"                },\n"
-				"                // ...\n"
-				"                // For more available options, check out the documentation below\n"
-				"            })\n"
-				"\n"
-				"            gitment.render('gitment-comments')\n"
 				"        })\n"
 				"    </script>\n"
 				"\n"
@@ -246,39 +232,39 @@ namespace my_skin {
 				"\n"
 				"</html>\n"
 				"";
-		#line 211 "templates/article.tmpl.html"
+		#line 197 "templates/article.tmpl.html"
 		} // end of template render
-	#line 212 "templates/article.tmpl.html"
+	#line 198 "templates/article.tmpl.html"
 	private:
-	#line 212 "templates/article.tmpl.html"
+	#line 198 "templates/article.tmpl.html"
 		int _domain_id;
-	#line 212 "templates/article.tmpl.html"
+	#line 198 "templates/article.tmpl.html"
 	}; // end of class message_article
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
 } // end of namespace my_skin
 #line 2 "templates/article.tmpl.html"
 namespace my_skin {
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
 } // end of namespace my_skin
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
 namespace {
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
  cppcms::views::generator my_generator; 
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
  struct loader { 
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
   loader() { 
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
    my_generator.name("my_skin");
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
    my_generator.add_view<my_skin::message_article,content::message_article>("message_article",true);
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
     cppcms::views::pool::instance().add(my_generator);
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
  }
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
 } a_loader;
-#line 213 "templates/article.tmpl.html"
+#line 199 "templates/article.tmpl.html"
 } // anon 
