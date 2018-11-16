@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="/file/static/highlight/styles/github.css">
     <script src="/file/static/highlight/highlight.pack.js"></script>
 
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+
 
   </head>
 
@@ -86,12 +89,7 @@
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+              <div class="comments"></div>
             </div>
           </div>
 
@@ -190,6 +188,20 @@
             $('pre code').each(function(i, block) {
                 hljs.highlightBlock(block);
             });
+
+            const gitment = new Gitment({
+                //id: 'Your page ID', // optional
+                owner: 'roy.lieu@gmail.com',
+                repo: 'gitment-repo',
+                oauth: {
+                    client_id: '1ed6fa12336d3a6ebf20',
+                    client_secret: '57ca20e5163b8aa4ef6e1e3ed4b175afcce0a1bb',
+                },
+                // ...
+                // For more available options, check out the documentation below
+            })
+
+            gitment.render('comments')
         })
     </script>
 
