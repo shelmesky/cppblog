@@ -89,7 +89,7 @@
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-              <div class="comments"></div>
+              <div id="gitment-comments"></div>
             </div>
           </div>
 
@@ -190,7 +190,7 @@
             });
 
             const gitment = new Gitment({
-                //id: 'Your page ID', // optional
+                id: document.location.href, // optional
                 owner: 'roy.lieu@gmail.com',
                 repo: 'gitment-repo',
                 oauth: {
@@ -201,7 +201,7 @@
                 // For more available options, check out the documentation below
             })
 
-            gitment.render('comments')
+            gitment.render('gitment-comments')
         })
     </script>
 
